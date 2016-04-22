@@ -53,12 +53,6 @@
 
 	'use strict';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	// import {syncReduxAndRouter} from 'redux-simple-router';
-
-	// import {Router} from 'react-router';
-
-
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -86,9 +80,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Add the reducer to your store on the `routing` key
-	var store = (0, _redux.createStore)(combineReducers(_extends({}, _reducers2.default, {
-	  routing: _reactRouterRedux.routerReducer
-	})));
+
+	// import {syncReduxAndRouter} from 'redux-simple-router';
+	var store = (0, _redux.createStore)(_reducers2.default);
+	// import {Router} from 'react-router';
+
 
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 
@@ -29449,7 +29445,11 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _redux = __webpack_require__(160);
+
+	var _reactRouterRedux = __webpack_require__(211);
 
 	var _books = __webpack_require__(279);
 
@@ -29461,10 +29461,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var rootReducer = (0, _redux.combineReducers)({
+	var reducers = {
 	  books: _books2.default,
 	  activedBook: _activedBook2.default
-	});
+	};
+
+	var rootReducer = (0, _redux.combineReducers)(_extends({}, reducers, {
+	  routing: _reactRouterRedux.routerReducer
+	}));
 
 	exports.default = rootReducer;
 

@@ -4,7 +4,7 @@ import {createStore, compose} from 'redux';
 import { Provider } from 'react-redux';
 import {createHistory} from 'history';
 // import {syncReduxAndRouter} from 'redux-simple-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { syncHistoryWithStore } from 'react-router-redux'
 // import {Router} from 'react-router';
 import { Router, browserHistory } from 'react-router'
 
@@ -12,13 +12,9 @@ import routes from './routes'
 import reducers from './reducers';
 
 
-
 // Add the reducer to your store on the `routing` key
 const store = createStore(
-  combineReducers({
-    ...reducers,
-    routing: routerReducer
-  })
+  reducers
 )
 
 

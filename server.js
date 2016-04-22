@@ -26,8 +26,8 @@ app.use ( function (req, res)  {
 });
 // app.get('/', function (req, res) {
 // 	// var html = React.renderToString(React.createElement(Handler));
-//   var page = swig.renderFile( 'public/index.html' , { html: html } );
-// 	res.send(page);
+//   // var page = swig.renderFile( 'public/index.html' , { html: html } );
+// 	res.send('public/index222.html');
 // });
 
 
@@ -37,44 +37,3 @@ app.listen(app.get( 'port' ), function ()  {
 
 
 
-
-
-
-// send all requests to index.html so browserHistory works
-
-// app.get('*', (req, res) => {
-//   // match the routes to the url
-//   match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
-//     if (error) {
-//       console.log('Error', error);
-//       res.status(500).send(error);
-//     } else if (redirectLocation) {
-//       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-//     } else if (renderProps) {
-//       const devTools = (isDev) ? <DevTools /> : null;
-//       const html = renderToString(
-//         <RouterContext {...renderProps} />
-//       );
-//       res.render('index', { isProd: (!isDev), html: html });
-//     } else {
-//       res.status(404).send('Not Found');
-//     }
-//   })
-// })
-
-// function renderPage(appHtml) {
-//   return `
-//     <!doctype html public="storage">
-//     <html>
-//     <meta charset=utf-8/>
-//     <title>My First React Router App</title>
-//     <link rel=stylesheet href=/index.css>
-//     <div id=app>${appHtml}</div>
-//     <script src="/bundle.js"></script>
-//    `
-// }
-
-// var PORT = process.env.PORT || 8080
-// app.listen(PORT, function() {
-//   console.log('Production Express server running at localhost:' + PORT)
-// })
