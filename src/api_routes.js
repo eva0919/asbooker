@@ -8,14 +8,14 @@ var url = 'mongodb://localhost:27017/test';
 
 var findRestaurants = function(db, callback) {
    var cursor =db.collection('restaurants').find( );
-   var returnData = '';
+   var returnData = [];
    cursor.each(function(err, doc) {
       assert.equal(err, null);
       if (doc != null) {
          console.dir( doc );
-         returnData += JSON.stringify(doc);
+         returnData.push( doc );
       } else {
-         callback(returnData);
+         callback( JSON.stringify(returnData) );
       }
    });
 };
