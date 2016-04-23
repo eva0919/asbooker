@@ -9,6 +9,7 @@ var React = require ( 'react' );
 var Router = require ( 'react-router' );
 // import { match, RouterContext } from 'react-router'
 var routes = require ( './src/routes' );
+var api_routes = require('./src/api_routes')
 var app = express();
 
 app.set( 'port' , process.env.PORT || 3001 );
@@ -16,6 +17,8 @@ app.use (logger( 'dev' ));
 app.use (bodyParser.json());
 app.use (bodyParser.urlencoded({ extended: false }));
 app.use (express. static (path.join(__dirname, 'public' )));
+
+app.use('/api', api_routes )
 
 app.use ( function (req, res)  {
   Router.run(routes, req.path, function (Handler)  {
