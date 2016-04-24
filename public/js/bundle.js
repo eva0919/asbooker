@@ -29281,6 +29281,10 @@
 
 	var _selectBook2 = _interopRequireDefault(_selectBook);
 
+	var _initialBookList = __webpack_require__(281);
+
+	var _initialBookList2 = _interopRequireDefault(_initialBookList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29307,14 +29311,21 @@
 	        return _react2.default.createElement(
 	          'li',
 	          {
-	            key: book.title,
+	            key: book._id,
 	            onClick: function onClick() {
 	              return _this2.props.selectBook(book);
 	            },
 	            className: 'list-group-item' },
-	          book.title
+	          book.name
 	        );
 	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      $.get('/api/', function (result) {
+	        this.props.initialBookList(JSON.parse(result));
+	      }.bind(this));
 	    }
 	  }, {
 	    key: 'render',
@@ -29341,7 +29352,7 @@
 	function mapDispatchToProps(dispatch) {
 	  // Whenever selectBook is called, the result shoudl be passed
 	  // to all of our reducers
-	  return (0, _redux.bindActionCreators)({ selectBook: _selectBook2.default }, dispatch);
+	  return (0, _redux.bindActionCreators)({ selectBook: _selectBook2.default, initialBookList: _initialBookList2.default }, dispatch);
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BookList);
@@ -29405,20 +29416,24 @@
 	  _createClass(ActivedBook, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'active-book-block col-sm-8' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          this.props.activedBook.title
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          this.props.activedBook.pages
-	        )
-	      );
+	      if (this.props.activedBook) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'active-book-block col-sm-8' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.props.activedBook.name
+	          ),
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            this.props.activedBook.contents[0].content
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement('div', { className: 'active-book-block col-sm-8' });
+	      }
 	    }
 	  }]);
 
@@ -29483,7 +29498,15 @@
 	});
 
 	exports.default = function () {
-	  return [{ title: 'Javascript: The Good Parts', pages: 101 }, { title: 'Harry Potter', pages: 39 }, { title: 'The Dark Tower', pages: 85 }, { title: 'Eloquent Ruby', pages: 1 }];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'BOOKLIST_SET_INITIAL':
+	      return action.payload;
+	  }
+
+	  return state;
 	};
 
 /***/ },
@@ -29497,7 +29520,7 @@
 	});
 
 	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? { title: 'Javascript: The Good Parts', pages: 101 } : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
 	  var action = arguments[1];
 
 	  switch (action.type) {
@@ -29506,6 +29529,25 @@
 	  }
 
 	  return state;
+	};
+
+/***/ },
+/* 281 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (booklist) {
+	  // selectBook is an ActionCreator, it needs to return an action,
+	  // an object with a type property.
+	  return {
+	    type: 'BOOKLIST_SET_INITIAL',
+	    payload: booklist
+	  };
 	};
 
 /***/ }

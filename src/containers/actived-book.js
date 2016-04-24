@@ -5,12 +5,19 @@ import { bindActionCreators } from 'redux';
 
 class ActivedBook extends Component {
   render() {
-    return (
-      <div className="active-book-block col-sm-8">
-        <h2>{ this.props.activedBook.title }</h2>
-        <h3>{ this.props.activedBook.pages }</h3>
-      </div>
-    )
+    if( this.props.activedBook ){
+      return (
+        <div className="active-book-block col-sm-8">
+          <h2>{ this.props.activedBook.name }</h2>
+          <h3>{ this.props.activedBook.contents[0].content }</h3>
+        </div>
+      )
+    }else{
+      return (
+        <div className="active-book-block col-sm-8">
+        </div>
+      )
+    }
   }
 }
 

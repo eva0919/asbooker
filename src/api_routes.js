@@ -7,9 +7,9 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
 
 var findRestaurants = function(db, callback) {
-   var cursor =db.collection('restaurants').find( );
-   var returnData = [];
-   cursor.each(function(err, doc) {
+  var cursor =db.collection('booklist').find( );
+  var returnData = [];
+  cursor.each(function(err, doc) {
       assert.equal(err, null);
       if (doc != null) {
          console.dir( doc );
@@ -17,7 +17,7 @@ var findRestaurants = function(db, callback) {
       } else {
          callback( JSON.stringify(returnData) );
       }
-   });
+  });
 };
 
 
