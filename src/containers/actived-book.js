@@ -4,12 +4,26 @@ import { bindActionCreators } from 'redux';
 
 
 class ActivedBook extends Component {
+  renderContents(){
+    let key = 0;
+    return this.props.activedBook.contents.map((contentSet) => {
+      key += 1;
+      let keyString = "contentKey"+key;
+      return (
+        <span key={keyString}>
+          <p>{contentSet.question}</p>
+          <p>{contentSet.content}</p>
+        </span>
+      );
+    });
+  }
+
   render() {
     if( this.props.activedBook ){
       return (
         <div className="active-book-block col-sm-8">
           <h2>{ this.props.activedBook.name }</h2>
-          <h3>{ this.props.activedBook.contents[0].content }</h3>
+          <div>{ this.renderContents() }</div>
         </div>
       )
     }else{

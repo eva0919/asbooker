@@ -29414,6 +29414,29 @@
 	  }
 
 	  _createClass(ActivedBook, [{
+	    key: 'renderContents',
+	    value: function renderContents() {
+	      var key = 0;
+	      return this.props.activedBook.contents.map(function (contentSet) {
+	        key += 1;
+	        var keyString = "contentKey" + key;
+	        return _react2.default.createElement(
+	          'span',
+	          { key: keyString },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            contentSet.question
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            contentSet.content
+	          )
+	        );
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      if (this.props.activedBook) {
@@ -29426,9 +29449,9 @@
 	            this.props.activedBook.name
 	          ),
 	          _react2.default.createElement(
-	            'h3',
+	            'div',
 	            null,
-	            this.props.activedBook.contents[0].content
+	            this.renderContents()
 	          )
 	        );
 	      } else {

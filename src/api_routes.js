@@ -12,7 +12,6 @@ var findRestaurants = function(db, callback) {
   cursor.each(function(err, doc) {
       assert.equal(err, null);
       if (doc != null) {
-         console.dir( doc );
          returnData.push( doc );
       } else {
          callback( JSON.stringify(returnData) );
@@ -20,6 +19,13 @@ var findRestaurants = function(db, callback) {
   });
 };
 
+
+var insertDocument = function(db, dataSet, callback){
+	db.collection('booklist').insertOne(dataSet, function(err, result){
+		assert.equal(err, null);
+    callback();
+	});
+};
 
 
 // define the home page route
@@ -33,6 +39,19 @@ router.get('/', function(req, res) {
 	});
   
 });
+
+// define the about route
+router.post('/insert', function(req, res) {
+	// console.dir(req.body);
+  MongoClient.connect(url, function(err, db) {
+	  assert.equal(null, err);
+	  insertDocument(db, req.body,function() {
+	      res.send('success');
+	  });
+	});
+	// res.send('success');
+});
+
 // define the about route
 router.get('/about', function(req, res) {
   res.send('About Api');
