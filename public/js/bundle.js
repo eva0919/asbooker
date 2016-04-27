@@ -73,7 +73,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reducers = __webpack_require__(278);
+	var _reducers = __webpack_require__(280);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -29191,11 +29191,15 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
+	var _layout = __webpack_require__(279);
+
+	var _layout2 = _interopRequireDefault(_layout);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 		_reactRouter.Route,
-		{ path: '/', component: _app2.default },
+		{ path: '/', component: _layout2.default },
 		_react2.default.createElement(_reactRouter.IndexRoute, { component: _app2.default })
 	);
 
@@ -29219,7 +29223,7 @@
 
 	var _bookList2 = _interopRequireDefault(_bookList);
 
-	var _activedBook = __webpack_require__(277);
+	var _activedBook = __webpack_require__(278);
 
 	var _activedBook2 = _interopRequireDefault(_activedBook);
 
@@ -29281,7 +29285,7 @@
 
 	var _selectBook2 = _interopRequireDefault(_selectBook);
 
-	var _initialBookList = __webpack_require__(281);
+	var _initialBookList = __webpack_require__(277);
 
 	var _initialBookList2 = _interopRequireDefault(_initialBookList);
 
@@ -29378,6 +29382,25 @@
 
 /***/ },
 /* 277 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (booklist) {
+	  // selectBook is an ActionCreator, it needs to return an action,
+	  // an object with a type property.
+	  return {
+	    type: 'BOOKLIST_SET_INITIAL',
+	    payload: booklist
+	  };
+	};
+
+/***/ },
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29474,7 +29497,100 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(ActivedBook);
 
 /***/ },
-/* 278 */
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Layout = function (_Component) {
+		_inherits(Layout, _Component);
+
+		function Layout() {
+			_classCallCheck(this, Layout);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Layout).apply(this, arguments));
+		}
+
+		_createClass(Layout, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'nav',
+						null,
+						_react2.default.createElement(
+							'div',
+							{ className: 'nav-wrapper' },
+							_react2.default.createElement(
+								'a',
+								{ href: '#', className: 'brand-logo right' },
+								'問書'
+							),
+							_react2.default.createElement(
+								'ul',
+								{ id: 'nav-mobile', className: 'left hide-on-med-and-down' },
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: 'sass.html' },
+										'書評總表'
+									)
+								),
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement(
+										'a',
+										{ href: 'badges.html' },
+										'關於我們'
+									)
+								),
+								_react2.default.createElement(
+									'li',
+									null,
+									_react2.default.createElement('a', { href: 'collapsible.html' })
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						this.props.children
+					)
+				);
+			}
+		}]);
+
+		return Layout;
+	}(_react.Component);
+
+	exports.default = Layout;
+
+/***/ },
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29489,11 +29605,11 @@
 
 	var _reactRouterRedux = __webpack_require__(211);
 
-	var _books = __webpack_require__(279);
+	var _books = __webpack_require__(281);
 
 	var _books2 = _interopRequireDefault(_books);
 
-	var _activedBook = __webpack_require__(280);
+	var _activedBook = __webpack_require__(282);
 
 	var _activedBook2 = _interopRequireDefault(_activedBook);
 
@@ -29511,7 +29627,7 @@
 	exports.default = rootReducer;
 
 /***/ },
-/* 279 */
+/* 281 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29533,7 +29649,7 @@
 	};
 
 /***/ },
-/* 280 */
+/* 282 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29552,25 +29668,6 @@
 	  }
 
 	  return state;
-	};
-
-/***/ },
-/* 281 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (booklist) {
-	  // selectBook is an ActionCreator, it needs to return an action,
-	  // an object with a type property.
-	  return {
-	    type: 'BOOKLIST_SET_INITIAL',
-	    payload: booklist
-	  };
 	};
 
 /***/ }
