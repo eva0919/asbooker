@@ -11,10 +11,10 @@ import { Router, browserHistory } from 'react-router'
 import routes from './routes'
 import reducers from './reducers';
 
-
+const initialState = window.__INITIAL_STATE__
 // Add the reducer to your store on the `routing` key
 const store = createStore(
-  reducers
+  reducers, initialState
 )
 
 

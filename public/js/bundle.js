@@ -79,12 +79,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import {syncReduxAndRouter} from 'redux-simple-router';
+
+
+	var initialState = window.__INITIAL_STATE__;
 	// Add the reducer to your store on the `routing` key
 
-	// import {syncReduxAndRouter} from 'redux-simple-router';
-	var store = (0, _redux.createStore)(_reducers2.default);
 	// import {Router} from 'react-router';
-
+	var store = (0, _redux.createStore)(_reducers2.default, initialState);
 
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 
@@ -29195,12 +29197,17 @@
 
 	var _layout2 = _interopRequireDefault(_layout);
 
+	var _home = __webpack_require__(283);
+
+	var _home2 = _interopRequireDefault(_home);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 		_reactRouter.Route,
 		{ path: '/', component: _layout2.default },
-		_react2.default.createElement(_reactRouter.IndexRoute, { component: _app2.default })
+		_react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default }),
+		_react2.default.createElement(_reactRouter.Route, { path: 'book', component: _app2.default })
 	);
 
 /***/ },
@@ -29512,6 +29519,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(216);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29544,7 +29553,7 @@
 							_react2.default.createElement(
 								'a',
 								{ href: '#', className: 'brand-logo right' },
-								'問書'
+								'說書先生'
 							),
 							_react2.default.createElement(
 								'ul',
@@ -29553,8 +29562,8 @@
 									'li',
 									null,
 									_react2.default.createElement(
-										'a',
-										{ href: 'sass.html' },
+										_reactRouter.Link,
+										{ to: '/book' },
 										'書評總表'
 									)
 								),
@@ -29669,6 +29678,55 @@
 
 	  return state;
 	};
+
+/***/ },
+/* 283 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Home = function (_React$Component) {
+	  _inherits(Home, _React$Component);
+
+	  function Home() {
+	    _classCallCheck(this, Home);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Home).apply(this, arguments));
+	  }
+
+	  _createClass(Home, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'alert alert-info' },
+	        'Hello from Home  Component'
+	      );
+	    }
+	  }]);
+
+	  return Home;
+	}(_react2.default.Component);
+
+	exports.default = Home;
 
 /***/ }
 /******/ ]);
